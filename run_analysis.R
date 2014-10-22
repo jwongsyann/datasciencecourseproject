@@ -1,3 +1,6 @@
+### This code extracts the data from the data set, compiles the test data and train data together
+### Please find variable descriptions in the code book.
+
 # Source libraries
 library(reshape2)
 
@@ -14,15 +17,15 @@ trainsubjects<-read.table("./train/subject_train.txt")
 features<-read.table("features.txt")
 activitylabels<-read.table("activity_labels.txt")
 
-# Create variable for set
+# Create factor variable for set
 testset<-cbind(rep("test",dim(testset)[1]),testset)
 trainset<-cbind(rep("train",dim(trainset)[1]),trainset)
 
-# Merge individually
+# Merge individual datasets with their subject vectors and label vectors.
 totaltestset<-cbind(testsubjects,testlabels,testset)
 totaltrainset<-cbind(trainsubjects,trainlabels,trainset)
 
-# Create column names
+# Create column names appended with 3 extra id variables, subject, activity and set.
 features<-as.character(features[,2])
 totalfeatures<-c("Subject","Activity","Set",features)
 
@@ -30,13 +33,16 @@ totalfeatures<-c("Subject","Activity","Set",features)
 colnames(totaltestset)<-totalfeatures
 colnames(totaltrainset)<-totalfeatures
 
-# Merge both sets
+# Merge both sets for both test and train.
 totalset<-rbind(totaltestset,totaltrainset)
 
-# Subset data to only mean and std data 
+# Subset data for only mean and std data 
+# Creates factor variables for mean and std 
 meanlevels<-grep("mean",totalfeatures)
 stdlevels<-grep("std",totalfeatures)
+# Creates a combined factor variable vector for all mean and std and include the 3 id variables
 subsetfeatures<-c("Subject","Activity","Set",totalfeatures[meanlevels],totalfeatures[stdlevels])
+# Subsets the data with the new combined factor variable vector
 subsetdata<-totalset[,subsetfeatures]
 
 # Use descriptive activity names to name the activities in the data set
@@ -58,5 +64,6 @@ subsetfeatures<-gsub("\\(\\)","",subsetfeatures)
 colnames(subsetdata)<-subsetfeatures
 
 # Create a second tidy data set with average of each variable for each activity and subject
+# Transforms data into skinny tidy data with id as subject and activity and all else as variables ex Set.
 subsetMelt<-melt(subsetdata,id=names(subsetdata)[1:2],measure.vars=names(subsetdata)[4:dim(subsetdata)[2]])
 subsetcast<-dcast(subsetMelt, Subject + Activity ~ variable, mean)
