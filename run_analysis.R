@@ -49,16 +49,15 @@ subsetdata<-totalset[,subsetfeatures]
 subsetdata$Activity<-factor(subsetdata$Activity,levels=activitylabels[,1],labels=activitylabels[,2])
 
 # Renames the subset features
-subsetfeatures<-gsub("tBody","timeBody",subsetfeatures)
-subsetfeatures<-gsub("fBody","frequencyBody",subsetfeatures)
-subsetfeatures<-gsub("Acc","Acceleration",subsetfeatures)
-subsetfeatures<-gsub("tGravity","timeGravity",subsetfeatures)
-subsetfeatures<-gsub("Gyro","Gyroscope",subsetfeatures)
-subsetfeatures<-gsub("mean","Mean",subsetfeatures)
-subsetfeatures<-gsub("std","StandardDeviation",subsetfeatures)
-subsetfeatures<-gsub("Freq","Frequency",subsetfeatures)
-subsetfeatures<-gsub("-","",subsetfeatures)
-subsetfeatures<-gsub("\\(\\)","",subsetfeatures)
+subsetfeatures<-gsub("tBody","timebody",subsetfeatures)
+subsetfeatures<-gsub("fBody","frequencybody",subsetfeatures)
+subsetfeatures<-gsub("Acc","acceleration",subsetfeatures)
+subsetfeatures<-gsub("tGravity","timegravity",subsetfeatures)
+subsetfeatures<-gsub("Gyro","gyroscope",subsetfeatures)
+subsetfeatures<-gsub("mean","mean",subsetfeatures)
+subsetfeatures<-gsub("std","standarddeviation",subsetfeatures)
+subsetfeatures<-gsub("Freq","frequency",subsetfeatures)
+subsetfeatures<-gsub("-|\\(\\)","",subsetfeatures)
 
 # Replaces the column names of the subsetted data
 colnames(subsetdata)<-subsetfeatures
@@ -67,3 +66,6 @@ colnames(subsetdata)<-subsetfeatures
 # Transforms data into skinny tidy data with id as subject and activity and all else as variables ex Set.
 subsetMelt<-melt(subsetdata,id=names(subsetdata)[1:2],measure.vars=names(subsetdata)[4:dim(subsetdata)[2]])
 subsetcast<-dcast(subsetMelt, Subject + Activity ~ variable, mean)
+
+# Write new tidy data to text file
+write.table(subsetcast,file="tidydata.txt",row.names=FALSE)
