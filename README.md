@@ -1,6 +1,5 @@
 ---
 title: "README"
-output: html_document
 ---
 
 This README file lays out the step by step details on how the original raw dataset (UCI HAR) is transformed into tidy data. Please see CodeBook for the description of variables.

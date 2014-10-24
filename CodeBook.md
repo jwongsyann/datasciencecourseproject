@@ -1,28 +1,27 @@
 ---
 title: "CodeBook"
-output: html_document
 ---
 
-The additional variable descriptions are as follows,
+The additional variable descriptions (units in brackets) are as follows,
 
-- testset         : measurements dataset for test subjects
-- testlabels      : label dataset for test subjects
-- testsubjects    : subject dataset for test subjects
-- trainset        : measurements dataset for train subjects
-- trainlabels     : label dataset for train subjects
-- trainsubjects   : subject dataset for train subjects
-- features        : features dataset.
-- activitylabels  : label dataset for all activities
-- totaltestset    : measurement, label and subject datasets merged for test subjects
-- totaltrainset   : measurement, label and subject datasets merged for train subjects
-- totalfeatures   : features dataset appended with 3 additional id variables, "Subject", "Activity" and "Set"
-- totalset        : measurement, label and subject datasets merged for both test and train subjects
-- meanlevels      : Level factors for mean variables
-- stdlevels       : Level factors for standard deviation variables.
-- subsetfeatures  : subsetted features dataset appended with the id variables, "Subject", "Activity" and "Set".
-- subsetdata      : Tidy data of subsetted totalset dataset using the subsetfeatures as subsetting factors.
-- subsetMelt      : Skinny tidy data of id variables "Subject" and "Activity" and all other subsetfeatures except "Set"
-- subsetcast      : Tidy dataset of average values of all variables in the subsetMelt dataset, for each subject and activity.
+- testset         : measurements dataset for test subjects (seconds)
+- testlabels      : label dataset for test subjects (N/A)
+- testsubjects    : subject dataset for test subjects (N/A)
+- trainset        : measurements dataset for train subjects (seconds)
+- trainlabels     : label dataset for train subjects (N/A)
+- trainsubjects   : subject dataset for train subjects (N/A)
+- features        : features dataset. (N/A)
+- activitylabels  : label dataset for all activities (N/A)
+- totaltestset    : measurement, label and subject datasets merged for test subjects (seconds)
+- totaltrainset   : measurement, label and subject datasets merged for train subjects (seconds)
+- totalfeatures   : features dataset appended with 3 additional id variables, "Subject", "Activity" and "Set" (N/A)
+- totalset        : measurement, label and subject datasets merged for both test and train subjects (Seconds)
+- meanlevels      : Level factors for mean variables (N/A)
+- stdlevels       : Level factors for standard deviation variables. (N/A)
+- subsetfeatures  : subsetted features dataset appended with the id variables, "Subject", "Activity" and "Set". (N/A)
+- subsetdata      : Tidy data of subsetted totalset dataset using the subsetfeatures as subsetting factors. (seconds)
+- subsetMelt      : Skinny tidy data of id variables "Subject" and "Activity" and all other subsetfeatures except "Set" (seconds)
+- subsetcast      : Tidy dataset of average values of all variables in the subsetMelt dataset, for each subject and activity. (seconds)
 
 The original variable descriptions are as follows;
 
